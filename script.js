@@ -189,7 +189,7 @@ const pokemonList = [
   { name: "Omanyte", hp: 70, types: ["rock", "water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/omanyte.png"},
   { name: "Omastar", hp: 100, types: ["rock", "water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/omastar.png"},
   { name: "Kabuto", hp: 62, types: ["rock", "water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/kabuto.png"},
-  { name: "Kabutops", hp: 90, types: ["rock", "water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/kaputops.png"},
+  { name: "Kabutops", hp: 90, types: ["rock", "water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/kabutops.png"},
   { name: "Aerodactyl", hp: 102, types: ["rock", "flying"], image: "https://img.pokemondb.net/sprites/red-blue/normal/aerodactyl.png"},
   { name: "Snorlax", hp: 182, types: ["normal"], image: "https://img.pokemondb.net/sprites/red-blue/normal/snorlax.png" },
   { name: "Articuno", hp: 124, types: ["ice", "flying"], image: "https://img.pokemondb.net/sprites/red-blue/normal/articuno.png"},
