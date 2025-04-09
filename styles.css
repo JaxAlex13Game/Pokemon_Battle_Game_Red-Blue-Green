@@ -1,0 +1,157 @@
+
+/* Add these new styles to your existing CSS */
+
+/* Button group styling */
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .button-group button {
+    margin: 0;
+  }
+  
+  #how-to-play {
+    background-color: #3b4cca;
+  }
+  
+  #how-to-play:hover {
+    background-color: #2a3aa3;
+  }
+  
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 25px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  
+  .close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: #333;
+  }
+  
+  .instructions {
+    text-align: left;
+    line-height: 1.6;
+  }
+  
+  .instructions h3 {
+    color: #ff0000;
+    margin-top: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+  }
+  
+  .type-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 10px 0;
+  }
+  /* Title Screen Styles */
+  .title-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    z-index: 100;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .title-screen h1 {
+    font-size: 3.5rem;
+    text-shadow: 3px 3px 0 #000, 5px 5px 0 #3b4cca;
+    margin-bottom: 2rem;
+    animation: bounce 1s infinite alternate;
+  }
+  
+  .title-screen button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    margin: 10px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+  }
+  
+  #start-game {
+    background-color: #ffde00;
+    color: #000;
+  }
+  
+  #start-game:hover {
+    background-color: #ffcc00;
+    transform: scale(1.1);
+  }
+  
+  #how-to-play-btn {
+    background-color: #3b4cca;
+    color: white;
+  }
+  
+  #how-to-play-btn:hover {
+    background-color: #2a3aa3;
+    transform: scale(1.1);
+  }
+  
+  .title-pokemon {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  
+  .title-pokemon img {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.3));
+    transition: all 0.3s;
+  }
+  
+  .title-pokemon img:hover {
+    transform: translateY(-10px);
+  }
+  
