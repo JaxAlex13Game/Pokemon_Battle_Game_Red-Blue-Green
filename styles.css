@@ -1,157 +1,179 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
 
-/* Add these new styles to your existing CSS */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-/* Button group styling */
-.button-group {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .button-group button {
-    margin: 0;
-  }
-  
-  #how-to-play {
-    background-color: #3b4cca;
-  }
-  
-  #how-to-play:hover {
-    background-color: #2a3aa3;
-  }
-  
-  /* Modal styles */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.7);
-  }
-  
-  .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 25px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    position: relative;
-  }
-  
-  .close {
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    cursor: pointer;
-  }
-  
-  .close:hover {
-    color: #333;
-  }
-  
-  .instructions {
-    text-align: left;
-    line-height: 1.6;
-  }
-  
-  .instructions h3 {
-    color: #ff0000;
-    margin-top: 20px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 5px;
-  }
-  
-  .type-examples {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin: 10px 0;
-  }
-  /* Title Screen Styles */
-  .title-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #ff0000, #cc0000);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    z-index: 100;
-    animation: fadeIn 0.5s ease-in;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  .title-screen h1 {
-    font-size: 3.5rem;
-    text-shadow: 3px 3px 0 #000, 5px 5px 0 #3b4cca;
-    margin-bottom: 2rem;
-    animation: bounce 1s infinite alternate;
-  }
-  
-  .title-screen button {
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    margin: 10px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-weight: bold;
-  }
-  
-  #start-game {
-    background-color: #ffde00;
-    color: #000;
-  }
-  
-  #start-game:hover {
-    background-color: #ffcc00;
-    transform: scale(1.1);
-  }
-  
-  #how-to-play-btn {
-    background-color: #3b4cca;
-    color: white;
-  }
-  
-  #how-to-play-btn:hover {
-    background-color: #2a3aa3;
-    transform: scale(1.1);
-  }
-  
-  .title-pokemon {
-    display: flex;
-    gap: 20px;
-    margin-top: 30px;
-  }
-  
-  .title-pokemon img {
-    width: 80px;
-    height: 80px;
-    filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.3));
-    transition: all 0.3s;
-  }
-  
-  .title-pokemon img:hover {
-    transform: translateY(-10px);
-  }
-  
+h1 {
+  color: #ff0000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.battle-area {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.pokemon {
+  text-align: center;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  margin: 10px;
+}
+
+.pokemon-image {
+  width: 75px;
+  height: 75px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.pokemon-name {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.pokemon-hp {
+  font-size: 16px;
+  color: #333;
+  margin: 5px 0;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 10px 0;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.battle-log {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  height: 150px;
+  overflow-y: auto;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Type colors */
+.type-normal { background-color: #A8A878; }
+.type-fire { background-color: #F08030; }
+.type-water { background-color: #6890F0; }
+.type-electric { background-color: #F8D030; }
+.type-grass { background-color: #78C850; }
+.type-ice { background-color: #98D8D8; }
+.type-fighting { background-color: #C03028; }
+.type-poison { background-color: #A040A0; }
+.type-ground { background-color: #E0C068; }
+.type-flying { background-color: #A890F0; }
+.type-psychic { background-color: #F85888; }
+.type-bug { background-color: #A8B820; }
+.type-rock { background-color: #B8A038; }
+.type-ghost { background-color: #705898; }
+.type-dragon { background-color: #7038F8; }
+.type-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 15px;
+  color: white;
+  font-size: 12px;
+  margin: 2px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  font-weight: bold;
+}
+
+/* Animations */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  75% { transform: translateX(-10px); }
+  100% { transform: translateX(0); }
+}
+
+.attack-animation {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes flash {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.damage-animation {
+  animation: flash 0.3s ease-in-out;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+.victory-animation {
+  animation: bounce 0.7s ease-in-out infinite;
+}
+
+@keyframes faint {
+  0% { opacity: 1; transform: rotate(0) scale(1); }
+  100% { opacity: 0; transform: rotate(90deg) scale(0); }
+}
+
+.faint-animation {
+  animation: faint 0.5s ease-out forwards;
+}
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.7);
+  border: 2px solid #3b4cca;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
