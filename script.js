@@ -1,29 +1,52 @@
+// Music Control
+const themeMusic = document.getElementById("pokemon-theme");
+const musicToggle = document.getElementById("music-toggle");
+let isMusicPlaying = false;
 
-// Add this at the beginning of your script.js
-
-// Title Screen Functionality
-const titleScreen = document.getElementById("title-screen");
-const gameScreen = document.getElementById("game-screen");
-const startGameBtn = document.getElementById("start-game");
-const howToPlayBtnTitle = document.getElementById("how-to-play-btn");
-
-startGameBtn.addEventListener("click", () => {
-  titleScreen.style.display = "none";
-  gameScreen.style.display = "block";
+// Try to autoplay when page loads
+window.addEventListener('DOMContentLoaded', () => {
+  themeMusic.volume = 0.3;
+  const playPromise = themeMusic.play();
   
-  // Initialize game with random Pokémon
-  const [initialPokemon1, initialPokemon2] = getTwoUniquePokemon();
-  currentPokemon1 = { ...initialPokemon1 };
-  currentPokemon2 = { ...initialPokemon2 };
-  displayPokemon(currentPokemon1, pokemon1Element);
-  displayPokemon(currentPokemon2, pokemon2Element);
+  if (playPromise !== undefined) {
+    playPromise.catch(error => {
+      // Auto-play was prevented, show muted icon
+      musicToggle.textContent = "🔇";
+      isMusicPlaying = false;
+    }).then(() => {
+      // Auto-play worked
+      musicToggle.textContent = "🔊";
+      isMusicPlaying = true;
+    });
+  }
 });
 
-howToPlayBtnTitle.addEventListener("click", () => {
-  modal.style.display = "block";
+// Toggle music on/off
+musicToggle.addEventListener("click", () => {
+  if (isMusicPlaying) {
+    themeMusic.pause();
+    musicToggle.textContent = "🔇";
+  } else {
+    themeMusic.play();
+    musicToggle.textContent = "🔊";
+  }
+  isMusicPlaying = !isMusicPlaying;
 });
 
-// The rest of your existing JavaScript code remains the same...
+// Enable music on any user interaction
+document.addEventListener('click', enableAudio, { once: true });
+document.addEventListener('keydown', enableAudio, { once: true });
+
+function enableAudio() {
+  if (!isMusicPlaying) {
+    themeMusic.play()
+      .then(() => {
+        musicToggle.textContent = "🔊";
+        isMusicPlaying = true;
+      })
+      .catch(e => console.log("Audio play failed:", e));
+  }
+}
 // Type effectiveness chart
 const typeEffectiveness = {
   normal: { rock: 0.5, ghost: 0, steel: 0.5 },
@@ -47,7 +70,6 @@ const typeEffectiveness = {
 };
 
 // Pokémon data
-// Sample Pokémon data
 const pokemonList = [
   { name: "Bulbasaur", hp: 68, types: ["grass", "poison"], image: "https://img.pokemondb.net/sprites/red-blue/normal/bulbasaur.png" },
   { name: "Ivysaur", hp: 97, types: ["grass", "poison"], image: "https://img.pokemondb.net/sprites/red-blue/normal/ivysaur.png" },
@@ -83,12 +105,12 @@ const pokemonList = [
   { name: "Nidoran(Male)", hp: 62, types: ["poison"], image: "https://img.pokemondb.net/sprites/red-blue/normal/nidoran-m.png"},
   { name: "Nidorino", hp: 90, types: ["poison"], image: "https://img.pokemondb.net/sprites/red-blue/normal/nidorino.png"},
   { name: "Nidoking", hp: 116, types: ["poison", "ground"], image: "https://img.pokemondb.net/sprites/red-blue/normal/nidoking.png"},
-  { name: "Clefairy", hp: 81, types: ["fairy"], image: "https://img.pokemondb.net/sprites/red-blue/normal/clefairy.png"},
-  { name: "Clefable", hp: 128, types: ["fairy"], image: "https://img.pokemondb.net/sprites/red-blue/normal/clefable.png"},
+  { name: "Clefairy", hp: 81, types: ["normal"], image: "https://img.pokemondb.net/sprites/red-blue/normal/clefairy.png"},
+  { name: "Clefable", hp: 128, types: ["normal"], image: "https://img.pokemondb.net/sprites/red-blue/normal/clefable.png"},
   { name: "Vulpix", hp: 61, types: ["fire"], image: "https://img.pokemondb.net/sprites/red-blue/normal/vulpix.png"},
   { name: "Ninetales", hp: 90, types: ["fire"], image: "https://img.pokemondb.net/sprites/red-blue/normal/ninetales.png"},
-  { name: "Jigglypuff", hp: 118, types: ["normal", "fairy"], image: "https://img.pokemondb.net/sprites/red-blue/normal/jigglypuff.png" },
-  { name: "Wigglytuff", hp: 150, types: ["normal", "fairy"], image: "https://img.pokemondb.net/sprites/red-blue/normal/wigglytuff.png" },
+  { name: "Jigglypuff", hp: 118, types: ["normal"], image: "https://img.pokemondb.net/sprites/red-blue/normal/jigglypuff.png" },
+  { name: "Wigglytuff", hp: 150, types: ["normal"], image: "https://img.pokemondb.net/sprites/red-blue/normal/wigglytuff.png" },
   { name: "Zubat", hp: 53, types: ["poison", "flying"], image: "https://img.pokemondb.net/sprites/red-blue/normal/zubat.png"},
   { name: "Golbat", hp: 83, types: ["poison", "flying"], image: "https://img.pokemondb.net/sprites/red-blue/normal/golbat.png"},
   { name: "Oddish", hp: 61, types: ["grass", "poison"], image: "https://img.pokemondb.net/sprites/red-blue/normal/oddish.png"},
@@ -170,7 +192,7 @@ const pokemonList = [
   { name: "Seaking", hp: 97, types: ["water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/seaking.png"},
   { name: "Staryu", hp: 64, types: ["water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/staryu.png"},
   { name: "Starmie", hp: 84, types: ["water", "psychic"], image: "https://img.pokemondb.net/sprites/red-blue/normal/starmie.png"},
-  { name: "Mr. Mime", hp: 69, types: ["psychic", "fairy"], image: "https://img.pokemondb.net/sprites/red-blue/normal/mr-mime.png"},
+  { name: "Mr. Mime", hp: 69, types: ["psychic"], image: "https://img.pokemondb.net/sprites/red-blue/normal/mr-mime.png"},
   { name: "Scyther", hp: 83, types: ["bug", "flying"], image: "https://img.pokemondb.net/sprites/red-blue/normal/scyther.png"},
   { name: "Jynx", hp: 93, types: ["ice", "psychic"], image: "https://img.pokemondb.net/sprites/red-blue/normal/jynx.png"},
   { name: "Electabuzz", hp: 85, types: ["electric"], image: "https://img.pokemondb.net/sprites/red-blue/normal/electabuzz.png"},
@@ -189,10 +211,10 @@ const pokemonList = [
   { name: "Omanyte", hp: 70, types: ["rock", "water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/omanyte.png"},
   { name: "Omastar", hp: 100, types: ["rock", "water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/omastar.png"},
   { name: "Kabuto", hp: 62, types: ["rock", "water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/kabuto.png"},
-  { name: "Kabutops", hp: 90, types: ["rock", "water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/kabutops.png"},
+  { name: "Kabutops", hp: 90, types: ["rock", "water"], image: "https://img.pokemondb.net/sprites/red-blue/normal/kaputops.png"},
   { name: "Aerodactyl", hp: 102, types: ["rock", "flying"], image: "https://img.pokemondb.net/sprites/red-blue/normal/aerodactyl.png"},
   { name: "Snorlax", hp: 182, types: ["normal"], image: "https://img.pokemondb.net/sprites/red-blue/normal/snorlax.png" },
-  { name: "Articuno", hp: 124, types: ["ice", "flying"], image: "https://img.pokemondb.net/sprites/red-blue/normal/articuno.png"},
+  { name: "Articuno", hp: 124, types: ["ice", "flying"], image: "https://img.pokemondb.net/sprites/red-blue/normal/arcticuno.png"},
   { name: "Zapdos", hp: 121, types: ["electric", "flying"], image: "https://img.pokemondb.net/sprites/red-blue/normal/zapdos.png"},
   { name: "Moltres", hp: 123, types: ["fire", "flying"], image: "https://img.pokemondb.net/sprites/red-blue/normal/moltres.png"},
   { name: "Dratini", hp: 76, types: ["dragon"], image: "https://img.pokemondb.net/sprites/red-blue/normal/dratini.png"},
@@ -200,7 +222,7 @@ const pokemonList = [
   { name: "Dragonite", hp: 118, types: ["dragon", "flying"], image: "https://img.pokemondb.net/sprites/red-blue/normal/dragonite.png" },
   { name: "Mewtwo", hp: 136, types: ["psychic"], image: "https://img.pokemondb.net/sprites/red-blue/normal/mewtwo.png" },
   { name: "Mew", hp: 134, types: ["psychic"], image: "https://img.pokemondb.net/sprites/red-blue/normal/mew.png" },
-  ]; 
+];
 
 // DOM Elements
 const pokemon1Element = document.getElementById("pokemon1");
@@ -353,28 +375,7 @@ function endBattle(pokemon1, pokemon2) {
   // Re-enable start button
   startBattleButton.disabled = false;
 }
-// Add this to your existing JavaScript code, right before the event listeners section
 
-// How to Play Modal functionality
-const howToPlayBtn = document.getElementById("how-to-play");
-const modal = document.getElementById("how-to-play-modal");
-const span = document.getElementsByClassName("close")[0];
-
-howToPlayBtn.onclick = function() {
-  modal.style.display = "block";
-}
-
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-// The rest of your existing JavaScript code remains the same...
 // Event listeners
 startBattleButton.addEventListener("click", () => {
   // Stop any ongoing battle
